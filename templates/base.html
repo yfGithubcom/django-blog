@@ -1,0 +1,36 @@
+{% load static %}
+<html lang="zh-cn">
+
+<head>
+    <meta charset="utf-8">
+    <title>
+        {% block title %}
+            {#网页标题#}
+        {% endblock %}
+    </title>
+    <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.css' %}">
+    <link rel="stylesheet" href="{% static 'markdown_css/monokai.css' %}">
+    <link rel="stylesheet" href="{% static 'font-awesome-4.7.0/css/font-awesome.min.css' %}">
+</head>
+
+<body>
+{% include 'header.html' %}
+
+{% block content %}
+    {#网页内容#}
+{% endblock %}
+
+{% include 'footer.html' %}
+</body>
+
+<script src="{% static 'bootstrap/js/bootstrap.js' %}"></script>
+<script src="{% static 'plugins/jQuery3.6.4.js' %}"></script>
+{#<script src="https://unpkg.com/@popperjs/core@2"></script>#}
+{#<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>#}
+<script src="{% static 'layer/layer.js' %}"></script>
+
+<script>
+    $('div#article_body table').addClass('table table-bordered');
+    $('div#article_body thead').addClass('thead-light');
+</script>
+</html>

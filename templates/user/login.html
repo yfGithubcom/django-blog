@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{#{% load static %}#}
+
+{% block title %}
+    登录
+{% endblock %}
+
+{% block content %}
+    <br>
+    <div class="container">
+        <h5>还没有账号？</h5>
+        <h5>点击<a href='{% url "user:user_register" %}'>注册账号</a>加入我们吧！</h5>
+
+        <div class="row">
+            <div class="col-12">
+                <br>
+                <form method="post" action=".">
+                    {% csrf_token %}
+
+                    {% for field in form %}
+                        <div class="form-group">
+                            <label for="{{ field.name }}">{{ field.label }}</label>
+                            {{ field }} {{ field.errors }}
+                        </div>
+                    {% endfor %}
+                    <br>
+                    <button type="submit" class="btn btn-primary">登录</button>
+                </form>
+            </div>
+        </div>
+
+        <h5>忘记密码？</h5>
+        <h5>通过邮箱<a href='#'>重置密码</a>！</h5>（若未预留邮箱请联系客服）
+    </div>
+{% endblock %}
