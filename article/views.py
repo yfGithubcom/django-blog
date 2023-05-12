@@ -93,7 +93,7 @@ def article_create(request):
         return render(request, 'article/create.html', data)
     form = ArticleForm(data=request.POST)
     if form.is_valid():
-        # form.save()
+        # form.save()  # form中没有作者信息，以登录用户作为文章的作者
         temp_form = form.save(commit=False)
         temp_form.author = User.objects.get(pk=request.user.pk)
         temp_form.save()

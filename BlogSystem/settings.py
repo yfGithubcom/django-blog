@@ -37,7 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     # 三方app
-
+    'taggit',
     # 自建app
     'article',
     'user',

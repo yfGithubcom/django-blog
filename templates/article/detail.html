@@ -9,27 +9,35 @@
 
     <div class="container">
         <div class="row">
-            <h1 class="col-12 mt-4 mb-4">
+            <h3 class="col-12 mt-4 mb-4">
                 {{ article.title }}
-            </h1>
+            </h3>
 
-            <div class="col-12 alert alert-success">
-                作者：{{ article.author }}
-                / 浏览量：{{ article.total_visit }}
+            <div class="col-12 alert alert-secondary">
+                <div class="row">
+                    <small class="col-md-2"> 作者：{{ article.author }}</small>
 
-                {% if user == article.author %}
-                    / <a href="#" onclick="confirm_delete()">删除文章</a>
-                    <form style="display: none" id="delete"
-                          action="{% url 'article:article_delete' article.id %}" method="post">
-                        {% csrf_token %}
-                        <button type="submit">删除</button>
-                    </form>
-                    / <a href="{% url 'article:article_update' article.id %}">编辑文章</a>
-                {% else %}
-                {% endif %}
+                    <small class="col-md-2"> 浏览量：{{ article.total_visit }}</small>
+
+                    <small class="col-md-6"></small>
+
+                    {% if user == article.author %}
+                        <small class="col-md-2">
+                            <a href="#" onclick="confirm_delete()">删除文章</a>
+                            <a href="{% url 'article:article_update' article.id %}">编辑文章</a>
+                        </small>
+                        <form method="post" style="display: none" id="delete"
+                              action="{% url 'article:article_delete' article.id %}">
+                            {% csrf_token %}
+                            <button type="submit">删除</button>
+                        </form>
+                    {% else %}{% endif %}
+
+                </div>
+
             </div>
 
-            <div class="col-9" style="min-height: 500px; height: auto">
+            <div class="col-9" style="min-height: 400px; height: auto">
                 <p>{{ article.body | safe }}</p>
                 <hr>
             </div>
