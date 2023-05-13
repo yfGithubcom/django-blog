@@ -5,7 +5,6 @@ from django.contrib.auth.models import User
 from django.db.models import Q
 import markdown
 from .models import Article
-from comment.models import Comment
 from .forms import ArticleForm
 from comment.models import Comment
 from utils.paginator import custom_paginator
@@ -16,18 +15,25 @@ from utils.paginator import custom_paginator
 def article_list(request):
     search = request.GET.get('search', '')
     order = request.GET.get('order', 'common')
+    column = request.GET.get('column', '')
+    tag = request.GET.get('tag', '')
+
+    articles = Article.objects.all()
 
     if search:
         q = Q(title__icontains=search) | Q(body__icontains=search)
+        articles = articles.filter(q)
+
+    order_list = ['total_visit', ]
+    if order in order_list:
         if order == 'total_visit':
-            articles = Article.objects.filter(q).order_by('-total_visit')
-        else:
-            articles = Article.objects.filter(q)
-    else:
-        if order == 'total_visit':
-            articles = Article.objects.all().order_by('-total_visit')  # order = 'total_visit'
-        else:
-            articles = Article.objects.all()  # order = 'common'
+            articles = articles.order_by('-total_visit')
+
+    if column:
+        articles = articles.filter(column__title=column)
+
+    if tag:
+        articles = articles.filter(tags__name__in=[tag])  # tags__in 会按照主键找tag
 
     page, page_list = custom_paginator(request, queryset=articles, per_page=6)
     articles = page
@@ -39,6 +45,8 @@ def article_list(request):
         'page_list': page_list,  # 分页列表
         'order': order,  # 排序参数
         'search': search,  # 查询参数
+        'column': column,  # 专栏
+        'tag': tag,  # 标签
     }
     return render(request, 'article/list.html', data)
 

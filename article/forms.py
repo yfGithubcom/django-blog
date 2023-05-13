@@ -5,7 +5,7 @@ from . import models
 class ArticleForm(forms.ModelForm):
     class Meta:
         model = models.Article
-        fields = ['title', 'column', 'body']  # 'author',
+        fields = ['title', 'column', 'body', 'tags']  # 'author',
         widgets = {
             # 'author': forms.TextInput,
             'title': forms.TextInput,
