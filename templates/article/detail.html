@@ -1,11 +1,12 @@
 {% extends 'base.html' %}
-{#{% load static %}#}
+{% load static %}
 
 {% block title %}
     文章详情
 {% endblock %}
 
 {% block content %}
+    <link rel="stylesheet" href="{% static 'ckeditor/prism/prism.css' %}">
 
     <div class="container">
         <div class="row">
@@ -62,7 +63,10 @@
                                     发个评论吧：
                                 </strong>
                             </label>
-                            <textarea type="text" class="form-control" id="content" name="content" rows="2"></textarea>
+                            <div>
+                                {{ comment_form.media }}
+                                {{ comment_form.content }}
+                            </div>
                         </div>
                         <button type="submit" class="btn btn-primary btn-sm">发送</button>
                     </form>
@@ -85,9 +89,15 @@
                         <span class="small" style="color: green">
                             发布于{{ comment.created | date:"Y-m-d H:i:s" }}
                         </span>
+                        <span class="small" style="float:right;">
+                            <a href="{% url 'comment:delete_comment' article.pk %}">删除</a>
+                        </span>
+                        <span>
+                            {{ comment.pk }}
+                        </span>
                     </p>
                     <div style="font-family: inherit;font-size: 1em;">
-                        {{ comment.content }}
+                        {{ comment.content | safe }}
                     </div>
                 {% endfor %}
             </div>
@@ -107,5 +117,8 @@
             })
         }
     </script>
-
+    <!--代码高亮js-->
+    <script src="{% static 'ckeditor/ckeditor/plugins/prism/lib/prism/prism_patched.min.js' %}"></script>
+    <!--富文本js-->
+    <script src="{% static 'ckeditor/prism/plugin.js' %}"></script>
 {% endblock %}

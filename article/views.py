@@ -7,6 +7,7 @@ import markdown
 from .models import Article
 from .forms import ArticleForm
 from comment.models import Comment
+from comment.forms import CommentForm
 from utils.paginator import custom_paginator
 
 
@@ -82,11 +83,13 @@ def article_detail(request, pk):
     article.body = md.convert(article.body)
 
     comments = Comment.objects.filter(article_id=pk)
+    comment_form = CommentForm()
 
     data = {
         'article': article,
         'md': md,
         'comments': comments,
+        'comment_form': comment_form,
     }
     return render(request, 'article/detail.html', data)
 

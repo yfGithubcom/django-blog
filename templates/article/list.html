@@ -115,11 +115,13 @@
                                     </small>
                                 </div>
 
-                                {#<div>#}
-                                {#    <small class="col align-self-end">#}
-                                {#        评论:#}
-                                {#    </small>#}
-                                {#</div>#}
+                                <div class="col-2">
+                                    <small class="col align-self-end">
+                                        <i class="fa fa-commenting-o" aria-hidden="true">
+                                            {{ article.total_comment }}
+                                        </i>
+                                    </small>
+                                </div>
 
                                 <div class="col-2">
                                     <small class="col align-self-end">

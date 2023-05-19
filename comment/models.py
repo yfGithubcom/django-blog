@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from ckeditor.fields import RichTextField
 from article.models import Article
 
 
@@ -12,7 +13,7 @@ class Comment(models.Model):
     # 评论的用户
     user = models.ForeignKey(verbose_name='用户', to=User,
                              on_delete=models.CASCADE, related_name='comment')
-    content = models.TextField(verbose_name='内容')
+    content = RichTextField(verbose_name='内容')
     # 评论时间,可用 default=timezone.now() 替换 auto_now=True 或 auto_now_add=True
     created = models.DateTimeField(auto_now_add=True)
 
