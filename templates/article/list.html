@@ -56,6 +56,18 @@
                             </a>
                         </li>
                     {% endif %}
+
+                    {% if order == 'total_comment' %}
+                        <li class="breadcrumb-item">
+                            <a>评论最多</a>
+                        </li>
+                    {% else %}
+                        <li class="breadcrumb-item">
+                            <a href="{% url 'article:article_list' %}?order=total_comment&search={{ search }}&column={{ column }}&tag={{ tag }}">
+                                评论最多
+                            </a>
+                        </li>
+                    {% endif %}
                 </ol>
             </div>
         </div>

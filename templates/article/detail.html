@@ -89,12 +89,15 @@
                         <span class="small" style="color: green">
                             发布于{{ comment.created | date:"Y-m-d H:i:s" }}
                         </span>
-                        <span class="small" style="float:right;">
-                            <a href="{% url 'comment:delete_comment' article.pk %}">删除</a>
-                        </span>
-                        <span>
-                            {{ comment.pk }}
-                        </span>
+
+                        {% if user == comment.user %}
+                            <span class="small" style="float:right;">
+                                <a href="{% url 'comment:delete_comment' article.pk comment.pk %}">
+                                    删除
+                                </a>
+                            </span>
+                        {% else %}{% endif %}
+
                     </p>
                     <div style="font-family: inherit;font-size: 1em;">
                         {{ comment.content | safe }}

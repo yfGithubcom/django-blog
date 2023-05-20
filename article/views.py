@@ -25,10 +25,12 @@ def article_list(request):
         q = Q(title__icontains=search) | Q(body__icontains=search)
         articles = articles.filter(q)
 
-    order_list = ['total_visit', ]
+    order_list = ['total_visit', 'total_comment']
     if order in order_list:
         if order == 'total_visit':
             articles = articles.order_by('-total_visit')
+        if order == 'total_comment':
+            articles = articles.order_by('-total_comment')
 
     if column:
         articles = articles.filter(column__title=column)
