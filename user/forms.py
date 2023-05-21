@@ -99,11 +99,12 @@ class UserProfileForm(MyModelForm):
 
     class Meta:
         model = models.UserProfile
-        fields = ['user', 'phone', 'avatar', 'biography', ]
-        labels = {'user': 'uid', 'phone': '手机号', 'avatar': '更换头像', 'biography': '个人简介'}
+        fields = ['user', 'phone', 'email', 'avatar', 'biography', ]
+        labels = {'user': 'uid', 'phone': '手机号', 'email': '邮箱', 'avatar': '更换头像', 'biography': '个人简介'}
         widgets = {
             'user': forms.TextInput,
             'phone': forms.TextInput,
+            'email': forms.EmailInput,
             'avatar': forms.FileInput,
             'biography': forms.Textarea,
         }
@@ -114,3 +115,33 @@ class UserProfileForm(MyModelForm):
         # for field_name in self.base_fields:
         #     field = self.base_fields[field_name]
         #     field.widget.attrs.update()
+
+
+class VerifWithMailForm(MyForm):
+    username = forms.CharField(label='昵称', widget=forms.TextInput, required=True)
+    email = forms.CharField(label='邮箱', widget=forms.EmailInput)
+
+
+class ResetWithMailForm(MyModelForm):
+    readonly = ['username', 'email']
+    new_password = forms.CharField(label='输入新密码', widget=forms.PasswordInput)
+    new_password_confirm = forms.CharField(label='确认新密码', widget=forms.PasswordInput)
+    captcha = forms.CharField(label='邮件验证码', widget=forms.TextInput)
+
+    class Meta:
+        model = User
+        fields = ['username', 'email']
+        labels = {'username': '昵称', 'email': '邮箱'}
+        widgets = {
+            'username': forms.TextInput,
+            'email': forms.EmailInput,
+        }
+
+    def clean_new_password_confirm(self):
+        data = self.cleaned_data
+        new_pwd = data.get('new_password')
+        new_pwd_confirm = data.get('new_password_confirm')
+        if new_pwd == new_pwd_confirm:
+            return new_pwd_confirm
+        else:
+            raise forms.ValidationError('两次密码不一致，请重新输入')

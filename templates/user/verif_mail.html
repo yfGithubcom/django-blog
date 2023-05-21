@@ -2,14 +2,16 @@
 {#{% load static %}#}
 
 {% block title %}
-    登录
+    用户验证
 {% endblock %}
 
 {% block content %}
     <br>
     <div class="container">
-        <h5>还没有账号？</h5>
-        <h5>点击<a href='{% url "user:user_register" %}'>注册账号</a>加入我们吧！</h5>
+        <h4>您正在通过邮箱找回密码</h4>
+        <h5>
+            验证成功将发送一封邮件至您的<a href="https://mail.qq.com" target="_blank">邮箱</a>，您可以使用邮件附带的验证码重置密码！
+        </h5>
 
         <div class="row">
             <div class="col-12">
@@ -24,12 +26,11 @@
                         </div>
                     {% endfor %}
                     <br>
-                    <button type="submit" class="btn btn-primary">登录</button>
+                    <button type="submit" class="btn btn-primary">发送验证码</button>
                 </form>
             </div>
         </div>
 
-        <h5>忘记密码？</h5>
-        <h5>通过邮箱<a href='{% url "user:verif_with_mail" %}'>重置密码</a>！</h5>（若未预留邮箱请联系客服）
+        <h5 class="small">若未预留邮箱请联系客服！</h5>
     </div>
 {% endblock %}

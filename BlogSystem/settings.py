@@ -60,8 +60,7 @@ ROOT_URLCONF = 'BlogSystem.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / 'templates']
-        ,
+        'DIRS': [BASE_DIR / 'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -130,14 +129,16 @@ STATICFILES_DIRS = [
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+# 图片等文件存放路径
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
 
+# 富文本编辑器配置
 CKEDITOR_CONFIGS = {
     # django-ckeditor默认使用default配置
     'default': {
         # 编辑器宽度自适应
-        'width': '1100px',
+        'width': '1110px',
         'height': '60px',
         # tab键转换空格数
         'tabSpaces': 4,

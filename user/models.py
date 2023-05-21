@@ -11,7 +11,8 @@ from django.dispatch import receiver
 class UserProfile(models.Model):
     user = models.OneToOneField(to=User, on_delete=models.CASCADE, related_name='userprofile')
     phone = models.CharField(verbose_name='手机号', max_length=20, blank=True)
-    avatar = models.ImageField(verbose_name='头像', upload_to=' avatar/%Y%m%d/', blank=True)  # ImageField不存储图片本身
+    email = models.EmailField(verbose_name='邮箱', blank=True)
+    avatar = models.ImageField(verbose_name='头像', upload_to='avatar/%Y%m%d/', blank=True)  # ImageField不存储图片本身
     biography = models.TextField(verbose_name='个人简介', max_length=100, blank=True)
 
     def __str__(self):
