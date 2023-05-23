@@ -25,6 +25,7 @@ urlpatterns = [
     path('article/', include('article.urls', namespace='article')),
     path('user/', include('user.urls', namespace='user')),
     path('comment/', include('comment.urls', namespace='comment')),
+    path('mdeditor/', include('mdeditor.urls')),  # article的图片路径
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

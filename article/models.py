@@ -3,6 +3,7 @@ from django.contrib.auth.models import User
 from django.utils import timezone
 from django.urls import reverse
 from taggit.managers import TaggableManager
+from mdeditor.fields import MDTextField
 
 
 # Create your models here.
@@ -22,7 +23,8 @@ class ArticleColumn(models.Model):  # 文章专栏
 class Article(models.Model):
     author = models.ForeignKey(verbose_name='作者', to=User, on_delete=models.CASCADE)
     title = models.CharField(verbose_name='标题', max_length=100)
-    body = models.TextField(verbose_name='正文')
+    # detail = models.CharField(verbose_name='摘要', max_length=100)
+    body = MDTextField(verbose_name='正文')
     created = models.DateTimeField(verbose_name='文章创建时间', default=timezone.now)
     updated = models.DateTimeField(verbose_name='最后更新时间', auto_now=True)
     total_visit = models.PositiveIntegerField(verbose_name='浏览量', default=0)

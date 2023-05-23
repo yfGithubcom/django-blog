@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     # 三方app
     'taggit',
     'ckeditor',
+    'mdeditor',
     # 自建app
     'article',
     'user',
@@ -132,6 +133,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # 图片等文件存放路径
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
+X_FRAME_OPTIONS = 'SAMEORIGIN'
 
 # 富文本编辑器配置
 CKEDITOR_CONFIGS = {
@@ -163,3 +165,8 @@ CKEDITOR_CONFIGS = {
         'extraPlugins': ','.join(['codesnippet', 'prism', 'widget', 'lineutils']),
     }
 }
+
+# MD文本编辑配置
+# MDEDITOR_CONFIGS = {
+
+# }

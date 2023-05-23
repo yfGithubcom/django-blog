@@ -74,12 +74,30 @@ def article_detail(request, pk):
 
     md = markdown.Markdown(
         extensions=[
-            # 包含 缩写、表格等常用扩展
+            # # 包含 缩写、表格等常用扩展
+            # 'markdown.extensions.extra',
+            # # 语法高亮扩展
+            # 'markdown.extensions.codehilite',
+            # # 自动生成目录
+            # 'markdown.extensions.toc',
             'markdown.extensions.extra',
-            # 语法高亮扩展
+            'markdown.extensions.abbr',
+            'markdown.extensions.attr_list',
+            'markdown.extensions.def_list',
+            'markdown.extensions.fenced_code',
+            'markdown.extensions.footnotes',
+            'markdown.extensions.md_in_html',
+            'markdown.extensions.tables',
+            'markdown.extensions.admonition',
             'markdown.extensions.codehilite',
-            # 目录拓展
+            'markdown.extensions.legacy_attrs',
+            'markdown.extensions.legacy_em',
+            'markdown.extensions.meta',
+            'markdown.extensions.nl2br',
+            'markdown.extensions.sane_lists',
+            'markdown.extensions.smarty',
             'markdown.extensions.toc',
+            'markdown.extensions.wikilinks'
         ]
     )
     article.body = md.convert(article.body)
