@@ -101,6 +101,10 @@ def article_detail(request, pk):
         ]
     )
     article.body = md.convert(article.body)
+    # 约束图片大小
+    article.body = article.body.replace('<img alt="" src=', '<img alt="" style="width: 80%;" src=')
+    # 添加段落间隔
+    article.body = article.body.replace('/></p>', '/></p></br>')
 
     comments = Comment.objects.filter(article_id=pk)
     comment_form = CommentForm()

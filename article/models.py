@@ -9,7 +9,7 @@ from mdeditor.fields import MDTextField
 # Create your models here.
 
 class ArticleColumn(models.Model):  # 文章专栏
-    title = models.CharField(verbose_name='专栏名称', max_length=60, blank=True)
+    title = models.CharField(verbose_name='专栏名称', max_length=60)
     created = models.DateTimeField(verbose_name='创建时间', auto_now_add=True)
 
     class Meta:
@@ -31,7 +31,7 @@ class Article(models.Model):
     total_comment = models.PositiveIntegerField(verbose_name='评论条数', default=0)
     column = models.ForeignKey(
         verbose_name='专栏', to=ArticleColumn,
-        null=True, blank=True, default='',
+        null=True, blank=True,
         on_delete=models.CASCADE, related_name='article'
     )
     tags = TaggableManager(verbose_name='标签', blank=True)
