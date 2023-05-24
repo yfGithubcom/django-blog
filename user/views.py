@@ -137,8 +137,8 @@ def verif_with_mail(request):
             code = captcha.verification_code(2, 2)  # 验证码，类型为str
             mail.custom_mail(
                 host='smtp.qq.com',
-                username='unocri@qq.com',
-                password='oalivigtwzvubaha',
+                username='sender@qq.com',  # 发件邮箱 比如：1234567890qq.com
+                password='',  # 去邮箱里设置开启smtp，并在此处填上密钥（非邮箱密码）
 
                 subject='密码找回',
                 message=f'您正在进行密码找回操作，验证码为：{code}，验证码有效时长为五分钟。',
