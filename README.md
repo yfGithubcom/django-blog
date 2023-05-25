@@ -5,16 +5,22 @@
 
 使用前你需要pip install的有
 
-pygmentize（这个可以不用下载，样式已经保存到static里了）、
-markdown、
-taggit、
-ckeditor、
-mdeditor、
+- pygmentize（这个可以不用下载，样式已经保存到static里了）、
+- markdown
+- taggit、
+- ckeditor、
+- mdeditor、
 
+```
+sql里注册的超级管理员账号：root，密码：root
+邮箱找回密码得先开启邮箱的smpt，
+然后到user/views.py里找到verif_with_mail()
+把注释的username（邮箱名）和password（邮箱密钥）补上即可
+```
 
-- sql里注册的超级管理员账号：root，密码：root
-- 邮箱找回密码得先开启邮箱的smpt，
-- 然后到user/views.py里找到verif_with_mail()
-- 把注释的username（邮箱名）和password（邮箱密钥）补上即可
-
-
+```
+不足：
+评论区多级评论未实现，
+博客详细页的markdown样式太丑了，
+视图可以使用restful framework，减少重复代码
+```
