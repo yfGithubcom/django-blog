@@ -10,9 +10,9 @@
 使用前你需要pip install的有
 - pygmentize（这个可以不用下载，样式已经保存到static里了）、
 - markdown
-- taggit、
-- ckeditor、
-- mdeditor、
+- taggit
+- ckeditor
+- mdeditor
 
 ```
 sql里注册的超级管理员账号：root，密码：root
